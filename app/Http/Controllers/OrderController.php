@@ -14,8 +14,8 @@ class OrderController extends Controller
 {
     function __construct()
     {
-         $this->middleware('permission:الطلبات', ['only' => ['index','store']]);
-         $this->middleware('permission:اضافة اودر', ['only' => ['create','store']]);
+         $this->middleware('permission:الطلبات', ['only' => ['index']]);
+         $this->middleware('permission:اضافة اودر', ['only' => ['create']]);
          $this->middleware('permission:تعديل اوردر', ['only' => ['edit','update']]);
          $this->middleware('permission:حذف اوردر', ['only' => ['destroy']]);
     }
@@ -53,7 +53,7 @@ class OrderController extends Controller
         ]);
         $name = $request->name;
         Session()->flash('success', 'تم ارسال الطلب بنجاح ');
-        Mail::to($request->email)->send(new sendorder($name));
+        // Mail::to($request->email)->send(new sendorder($name));
         return redirect()->back();
     }
 
